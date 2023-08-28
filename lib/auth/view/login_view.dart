@@ -1,4 +1,4 @@
-import 'package:management_product_demo/auth/model/Login_response.dart';
+import 'package:management_product_demo/auth/model/login_response.dart';
 
 abstract interface class LoginView {
   void onLoading();

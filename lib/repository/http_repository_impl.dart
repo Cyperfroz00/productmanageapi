@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:management_product_demo/auth/model/Login_request.dart';
+import 'package:management_product_demo/auth/model/login_request.dart';
 import 'package:management_product_demo/auth/model/login_response.dart';
 import 'package:management_product_demo/repository/http_repository.dart';
 import 'package:management_product_demo/service/api.dart';

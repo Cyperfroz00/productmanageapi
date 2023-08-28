@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../auth/model/Login_response.dart';
+import '../auth/model/login_response.dart';
 
 class HomeScreen extends StatefulWidget {
   LoginResponse loginResponse;

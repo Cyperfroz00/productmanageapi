@@ -1,5 +1,4 @@
-import 'package:management_product_demo/auth/model/Login_request.dart';
-import 'package:management_product_demo/auth/model/Login_response.dart';
+import 'package:management_product_demo/auth/model/login_request.dart';
 import 'package:management_product_demo/repository/http_repository.dart';
 import 'package:management_product_demo/service/http_service_injection.dart';
 import '../view/login_view.dart';
@@ -16,7 +15,7 @@ class LoginPresenter {
       if(value.isSuccess==false){
         view.onError(value.message!),
       }else{
-        view.onGetLoginSuccess(value.data as LoginResponse)
+        view.onGetLoginSuccess(value.data!)
     },
     });
   }

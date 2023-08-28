@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:management_product_demo/auth/model/Login_request.dart';
-import 'package:management_product_demo/auth/model/Login_response.dart';
+import 'package:management_product_demo/auth/model/login_request.dart';
+import 'package:management_product_demo/auth/model/login_response.dart';
 import 'package:management_product_demo/auth/presenter/login_presenter.dart';
 import 'package:management_product_demo/auth/view/login_view.dart';
 import 'package:management_product_demo/home/home_screen.dart';
@@ -165,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   @override
   void onGetLoginSuccess(LoginResponse loginResponse) {
       Navigator.push(context, MaterialPageRoute(builder: (context)=>
-          HomeScreen(loginResponse: loginResponse)));
+      HomeScreen(loginResponse: loginResponse)));
   }
 
   @override

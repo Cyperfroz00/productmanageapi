@@ -90,8 +90,10 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
               ),
               loading == true? Container(
                   padding: const EdgeInsets.all(25),
-                  child: CircularProgressIndicator(
-                    color: Colors.indigo,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.indigo,
+                    ),
                   )
               ):Container(
               ),

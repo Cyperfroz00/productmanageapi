@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         children: [
           Container(
+            padding: EdgeInsets.all(10),
             height: MediaQuery.of(context).size.height,
             child: GridView.builder(
               itemCount: 12,
@@ -35,8 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
                     color: Colors.pink[300],
                   ),
+                  child: Center(child: Text("${index}")),
                 );
               },
             ),

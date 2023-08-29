@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:management_product_demo/auth/model/login_request.dart';
 import 'package:management_product_demo/auth/model/login_response.dart';
 import 'package:management_product_demo/auth/presenter/login_presenter.dart';
 import 'package:management_product_demo/auth/view/login_view.dart';
 import 'package:management_product_demo/home/home_screen.dart';
+
+import '../constants/constants.dart';
 
 class LoginScreen extends StatefulWidget {
    LoginScreen({super.key});
@@ -18,7 +21,6 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   final _password = TextEditingController();
   late LoginPresenter presenter;
   bool loading = false;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -166,8 +168,11 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
 
   @override
   void onGetLoginSuccess(LoginResponse loginResponse) {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>
-      HomeScreen(loginResponse: loginResponse)));
+     // Navigator.push(context, MaterialPageRoute(builder: (context)=>
+      //HomeScreen(loginResponse: loginResponse)));
+    final LocalStorage storage = LocalStorage(Constants.user_local_key);
+    storage.setItem(Constants.user_name_key, loginResponse.username);
+    Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
   }
 
   @override

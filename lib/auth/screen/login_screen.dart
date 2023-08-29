@@ -4,7 +4,6 @@ import 'package:management_product_demo/auth/model/login_request.dart';
 import 'package:management_product_demo/auth/model/login_response.dart';
 import 'package:management_product_demo/auth/presenter/login_presenter.dart';
 import 'package:management_product_demo/auth/view/login_view.dart';
-import 'package:management_product_demo/home/home_screen.dart';
 
 import '../constants/constants.dart';
 
@@ -188,5 +187,10 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
     setState(() {
       loading = true;
     });
+  }
+
+  @override
+  void onSuccess(Object data) {
+    // TODO: implement onSuccess
   }
 }

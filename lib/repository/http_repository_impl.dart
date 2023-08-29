@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:management_product_demo/auth/model/login_request.dart';
 import 'package:management_product_demo/auth/model/login_response.dart';
 import 'package:management_product_demo/repository/http_repository.dart';
@@ -38,6 +39,34 @@ class HttpRepositoryImpl extends Api implements HttpRepository {
         message: e.toString(),
         data: null,
       );
+    }
+  }
+
+  @override
+  Future<HttpBaseResponse<List<String>>> getAllCategory() async {
+    try{
+      var url = Uri.parse(getAllCategoriesUrl);
+      var response = await http.get(url);
+      List<String> stringList = (jsonDecode(response.body) as List<dynamic>).cast<String>();
+      if(response.statusCode == 200){
+        return HttpBaseResponse(
+          code: 200,
+          isSuccess: true,
+          data: stringList,
+        );
+      }else{
+        return HttpBaseResponse(
+            code: 400,
+            isSuccess: false,
+            message: "Get Succcess",
+            data: null);
+      }
+    }catch(e){
+            return HttpBaseResponse(
+            code: 500,
+            isSuccess: false,
+            message: e.toString(),
+            data: null);
     }
   }
 }

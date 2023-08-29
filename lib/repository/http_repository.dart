@@ -4,4 +4,5 @@ import '../models/http_base_response.dart';
 
 abstract interface class HttpRepository{
   Future<HttpBaseResponse<LoginResponse>> login(LoginRequest req);
+  Future<HttpBaseResponse<List<String>>> getAllCategory();
 }

@@ -1,8 +1,5 @@
 import 'package:management_product_demo/auth/model/login_response.dart';
-
-abstract interface class LoginView {
-  void onLoading();
-  void onHiding();
-  void onError(String message);
+import 'package:management_product_demo/view/base_view.dart';
+abstract interface class LoginView implements BaseView {
   void onGetLoginSuccess(LoginResponse loginResponse);
 }

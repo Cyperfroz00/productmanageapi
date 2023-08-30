@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
- 
+
 class _HomeScreenState extends State<HomeScreen> implements HomeView {
   List<String> categoriesList = [];
   bool loading = false;
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeView {
     presenter = HomePresenter(this);
     presenter.getAllCategories();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final LocalStorage storage = LocalStorage(Constants.user_local_key);

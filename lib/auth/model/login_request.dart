@@ -16,5 +16,4 @@ class LoginRequest{
     map['password'] = password;
     return map;
   }
-
 }

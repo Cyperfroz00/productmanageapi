@@ -4,7 +4,6 @@ import 'package:management_product_demo/auth/model/login_request.dart';
 import 'package:management_product_demo/auth/model/login_response.dart';
 import 'package:management_product_demo/auth/presenter/login_presenter.dart';
 import 'package:management_product_demo/auth/view/login_view.dart';
-
 import '../constants/constants.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,7 +32,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             icon: Icon(
               Icons.person,
               color: Colors.white,
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
                 child: TextFormField(
                   controller: _password,
                   decoration: const InputDecoration(
-                    //border: OutlineInputBorder(),
+                    border: OutlineInputBorder(),
                     labelText: 'Password',
                     prefixIcon: Icon(Icons.password_outlined),
                   ),
@@ -101,7 +101,6 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
             ],
           ),
         ),
-
       ),
       bottomNavigationBar: InkWell(
         onTap: (){

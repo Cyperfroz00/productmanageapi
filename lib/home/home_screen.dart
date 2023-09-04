@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:management_product_demo/home/presenter/home_presenter.dart';
+import 'package:management_product_demo/home/product/screen/product_by_category_screen.dart';
 import 'package:management_product_demo/home/view/home_view.dart';
 import '../auth/constants/constants.dart';
 
@@ -50,12 +51,18 @@ class _HomeScreenState extends State<HomeScreen> implements HomeView {
                   crossAxisSpacing: 4.0,
                   mainAxisSpacing: 4.0),
               itemBuilder: (context,index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
-                    color: Colors.pink[300],
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                    ProductByCategoryScreen(categoryName: categoriesList[index])));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      color: Colors.pink[300],
+                    ),
+                    child: Center(child: Text("${categoriesList[index]}")),
                   ),
-                  child: Center(child: Text("${categoriesList[index]}")),
                 );
               },
             ),

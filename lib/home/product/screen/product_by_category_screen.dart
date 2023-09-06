@@ -12,19 +12,19 @@ class ProductByCategoryScreen extends StatefulWidget {
       _ProductByCategoryScreenState();
 }
 
-class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> implements ProductView{
-  List<Product> list =[];
+class _ProductByCategoryScreenState extends State<ProductByCategoryScreen>
+    implements ProductView {
+  List<Product> list = [];
   late ProductPresenter productPresenter;
-  bool loading = false ;
+  bool loading = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    productPresenter=ProductPresenter(this);
+    productPresenter = ProductPresenter(this);
     productPresenter.getAllProductByCategory(widget.categoryName);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +35,32 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> imple
         title: Text(widget.categoryName.toUpperCase()),
       ),
       body: Container(
-        child: loading==true ? CircularProgressIndicator(
-          color: Colors.indigo ,
-        ) : ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (BuildContext context, index) {
-              var product =list[index];
-          return Container(
-            margin: EdgeInsets.only(top: 5,left: 5,right: 5),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(.03)
-            ),
-            child: ListTile(
-              leading: Image.network("${product.thumbnail}",width: 80,height: 100,),
-              title: Text("${product.title}"),
-              subtitle: Text("${product.description}"),
-              trailing: Icon(Icons.navigate_next_rounded),
-            ),
-          );
-        }),
+        child: loading == true
+            ? Center(
+              child: CircularProgressIndicator(
+                  color: Colors.indigo,
+                ),
+            )
+            : ListView.builder(
+                itemCount: list.length,
+                itemBuilder: (BuildContext context, index) {
+                  var product = list[index];
+                  return Container(
+                    margin: EdgeInsets.only(top: 5, left: 5, right: 5),
+                    decoration:
+                        BoxDecoration(color: Colors.black.withOpacity(.03)),
+                    child: ListTile(
+                      leading: Image.network(
+                        "${product.thumbnail}",
+                        width: 80,
+                        height: 100,
+                      ),
+                      title: Text("${product.title}"),
+                      subtitle: Text("${product.description}"),
+                      trailing: Icon(Icons.navigate_next_rounded),
+                    ),
+                  );
+                }),
       ),
     );
   }
@@ -61,14 +68,14 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> imple
   @override
   void onError(String message) {
     // TODO: implement onError
-    print ("Error ${message}");
+    print("Error ${message}");
   }
 
   @override
   void onGetAllProductByCategorySuccess(List<Product> list) {
     // TODO: implement onGetAllProductByCategorySuccess
     setState(() {
-      this.list=list;
+      this.list = list;
     });
   }
 
@@ -76,14 +83,14 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> imple
   void onHiding() {
     // TODO: implement onHiding
     setState(() {
-      loading =false;
+      loading = false;
     });
   }
 
   @override
   void onLoading() {
     // TODO: implement onLoading
-    loading =true;
+    loading = true;
   }
 
   @override

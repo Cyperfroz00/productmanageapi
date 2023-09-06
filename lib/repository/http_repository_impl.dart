@@ -85,7 +85,7 @@ class HttpRepositoryImpl extends Api implements HttpRepository {
           message: "Get data success",
           code: 200,
           isSuccess: true,
-          data: list
+          data: list,
         );
       }else{
         return HttpBaseResponse(

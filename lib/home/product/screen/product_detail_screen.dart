@@ -89,7 +89,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             padding: EdgeInsets.all(15),
             child: Text(
               "${widget.product.description}",
-              maxLines: 100,
+              maxLines: 1000,
             ),
           ),
         ],

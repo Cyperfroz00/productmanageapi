@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:management_product_demo/home/product/models/Product.dart';
 import 'package:management_product_demo/home/product/presenter/product_presenter.dart';
+import 'package:management_product_demo/home/product/screen/product_detail_screen.dart';
 import 'package:management_product_demo/home/product/view/product_view.dart';
+
 
 class ProductByCategoryScreen extends StatefulWidget {
   String categoryName;
@@ -32,35 +34,46 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen>
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         iconTheme: IconThemeData(color: Colors.white),
-        title: Text(widget.categoryName.toUpperCase()),
+        title: Text("${widget.categoryName.toLowerCase()}"),
       ),
       body: Container(
         child: loading == true
             ? Center(
-              child: CircularProgressIndicator(
+                child: CircularProgressIndicator(
                   color: Colors.indigo,
                 ),
-            )
-            : ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (BuildContext context, index) {
-                  var product = list[index];
-                  return Container(
-                    margin: EdgeInsets.only(top: 5, left: 5, right: 5),
-                    decoration:
-                        BoxDecoration(color: Colors.black.withOpacity(.03)),
-                    child: ListTile(
-                      leading: Image.network(
-                        "${product.thumbnail}",
-                        width: 80,
-                        height: 100,
-                      ),
-                      title: Text("${product.title}"),
-                      subtitle: Text("${product.description}"),
-                      trailing: Icon(Icons.navigate_next_rounded),
-                    ),
-                  );
-                }),
+              )
+            : RefreshIndicator(
+                onRefresh: () async {
+                  productPresenter.getAllProductByCategory(widget.categoryName);
+                },
+                child: ListView.builder(
+                    itemCount: list.length,
+                    itemBuilder: (BuildContext context, index) {
+                      var product = list[index];
+                      return Container(
+                        margin: EdgeInsets.only(top: 5, left: 5, right: 5),
+                        decoration:
+                            BoxDecoration(color: Colors.black.withOpacity(.03)),
+                        child: ListTile(
+                          leading: Image.network(
+                            "${product.thumbnail}",
+                            width: 80,
+                            height: 100,
+                          ),
+                          title: Text("${product.title}"),
+                          subtitle: Text("${product.description}"),
+                          trailing: IconButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                  ProductDetailScreen(product: product),
+                              ));
+                            },icon:Icon(Icons.navigate_next_rounded),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
       ),
     );
   }

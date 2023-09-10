@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:management_product_demo/home/product/models/Product.dart';
+
 class ProductDetailScreen extends StatefulWidget {
   Product product;
-  ProductDetailScreen({super.key ,required this.product});
+  ProductDetailScreen({super.key, required this.product});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -19,16 +20,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       ),
       body: ListView(
         children: [
-          Padding(padding: EdgeInsets.all(15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Product Name:"),
-              Text("${widget.product.title}"),
-            ],
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Product Name:"),
+                Text("${widget.product.title}"),
+              ],
+            ),
           ),
-          ),
-          Padding(padding: EdgeInsets.all(15),
+          Padding(
+            padding: EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -37,16 +40,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
           ),
-          Padding(padding: EdgeInsets.all(15),
+          Padding(
+            padding: EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Product Discount:"),
-                Text("${widget.product.discountPercentage!.toStringAsFixed(2)} %"),
+                Text(
+                    "${widget.product.discountPercentage!.toStringAsFixed(2)} %"),
               ],
             ),
           ),
-          Padding(padding: EdgeInsets.all(15),
+          Padding(
+            padding: EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -55,7 +61,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
           ),
-          Padding(padding: EdgeInsets.all(15),
+          Padding(
+            padding: EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -64,13 +71,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
           ),
-          Padding(padding: EdgeInsets.all(15),
+          Padding(
+            padding: EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Product Category:"),
                 Text("${widget.product.category!.toUpperCase()}"),
               ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: Text("Product Description:"),
+          ),
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: Text(
+              "${widget.product.description}",
+              maxLines: 100,
             ),
           ),
         ],

@@ -7,4 +7,5 @@ abstract interface class HttpRepository{
   Future<HttpBaseResponse<LoginResponse>> login(LoginRequest req);
   Future<HttpBaseResponse<List<String>>> getAllCategory();
   Future<HttpBaseResponse<List<Product>>> getAllProductByCategoryName(String name);
+  Future<HttpBaseResponse<Product>> getProductById(int productId);
 }

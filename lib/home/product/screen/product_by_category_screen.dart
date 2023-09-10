@@ -65,9 +65,7 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen>
                           subtitle: Text("${product.description}"),
                           trailing: IconButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                                  ProductDetailScreen(product: product),
-                              ));
+                              productPresenter.getProductById(product.id!);
                             },icon:Icon(Icons.navigate_next_rounded),
                           ),
                         ),
@@ -109,5 +107,38 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen>
   @override
   void onSuccess(Object data) {
     // TODO: implement onSuccess
+  }
+
+  @override
+  void onGetProductByIdSuccess(Product product) {
+    // TODO: implement onGetProductByIdSuccess
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>
+        ProductDetailScreen(product: product),
+    ));
+  }
+
+  @override
+  void onHidingProductById() {
+    // TODO: implement onHidingProductById
+    Navigator.pop(context);
+  }
+
+  @override
+  void onLoadingProductById() {
+    // TODO: implement onLoadingProductById
+    showMessageDialog(context);
+  }
+  static showMessageDialog(BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Colors.indigo,
+          ),
+        );
+      },
+    );
   }
 }

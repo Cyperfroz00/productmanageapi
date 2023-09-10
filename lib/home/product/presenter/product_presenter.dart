@@ -19,4 +19,15 @@ class ProductPresenter{
       }
     });
   }
+  void getProductById(int productId){
+    view.onLoadingProductById();
+    httpRepository.getProductById(productId).then((value){
+      view.onHidingProductById();
+      if(value.isSuccess==true ){
+        view.onGetProductByIdSuccess(value.data!);
+      }else{
+        view.onError(value.message!);
+      }
+    });
+  }
 }

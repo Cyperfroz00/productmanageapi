@@ -102,4 +102,35 @@ class HttpRepositoryImpl extends Api implements HttpRepository {
           data: null,
           message: "General Error ${e.toString()}");
     }
+  }
+
+  @override
+  Future<HttpBaseResponse<Product>> getProductById(int productId) async {
+    // TODO: implement getProductById
+    try{
+      var url=Uri.parse(getProductByIdUrl+productId.toString());
+      var res = await http.get(url);
+      Map map = jsonDecode(res.body);
+      if(res.statusCode==200){
+        return HttpBaseResponse(
+          code: 200,
+          isSuccess: true,
+          message: "Get product by ID",
+          data: Product.fromJson(map)
+        );
+      }else{
+        return HttpBaseResponse(
+            code:400,
+            isSuccess: false,
+            data: null,
+            message: "Error");
+      }
+    }catch(e){
+      return HttpBaseResponse(
+          code:500,
+          isSuccess: false,
+          data: null,
+          message: "General Error ${e.toString()}");
+    }
+    throw UnimplementedError();
   }}

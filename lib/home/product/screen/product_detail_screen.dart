@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:management_product_demo/home/product/models/Product.dart';
 
@@ -20,6 +21,24 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       ),
       body: ListView(
         children: [
+          CarouselSlider(
+            options: CarouselOptions(height: 400.0),
+            items:widget.product.images!.map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: BoxDecoration(
+                          color: Colors.amber
+                      ),
+                      child: Image.network("${i}"
+                      ,height: 400,fit: BoxFit.cover,),
+                  );
+                },
+              );
+            }).toList(),
+          ),
           Padding(
             padding: EdgeInsets.all(15),
             child: Row(

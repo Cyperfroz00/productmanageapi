@@ -30,42 +30,122 @@ class _HomeScreenState extends State<HomeScreen> implements HomeView {
     var product;
     return Scaffold(
       appBar: AppBar(
+        leading: DrawerButton(
+          style: ButtonStyle(
+          ),
+        ),
         backgroundColor: Colors.indigo,
         title: Text(
-          "Home Screen",
+          "Dashboard",
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: loading == true ? Center(
-        child: CircularProgressIndicator(
-        ),
-      ): ListView(
-        children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height,
-            child: GridView.builder(
-              itemCount: categoriesList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 4.0,
-                  mainAxisSpacing: 4.0),
-              itemBuilder: (context,index) {
-                return InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                    ProductByCategoryScreen(categoryName: categoriesList[index])));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                      color: Colors.pink[300],
+      body: loading == true
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView(
+              children: [
+                Container(
+                  color: Color(0XFF3F51b5),
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextField(
+                    //controller: _searchController,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
                     ),
-                    child: Center(child: Text("${categoriesList[index]}")),
+                    decoration: InputDecoration(
+                      hintText: 'Search',
+                      hintStyle: TextStyle(
+                        color: Colors.white54,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.2),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 16.0,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
                   ),
-                );
-              },
+                ),
+                Container(
+                  padding: EdgeInsets.all(5),
+                  height: MediaQuery.of(context).size.height,
+                  child: GridView.builder(
+                    itemCount: categoriesList.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 4.0,
+                        mainAxisSpacing: 4.0),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductByCategoryScreen(
+                                      categoryName: categoriesList[index])));
+                        },
+                        child: Container(
+                          // width: 100,
+                          // height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            color: Colors.indigo,
+                          ),
+                          child:
+                              Center(child: Text(
+                                  "${categoriesList[index]}"
+                              ,style: TextStyle(color: Colors.white),),
+                              ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.blue,
+        //unselectedItemColor: Colors.grey,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        elevation: 10,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              size: 30.0,
+            ),
+            label: 'Home',
+          ),
+           BottomNavigationBarItem(
+             icon: Icon(
+               Icons.cached,
+               size: 30.0,
+             ),
+            label: 'Refresh',
+           ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings,
+              size: 30.0,
+            ),
+            label: 'Settings',
           ),
         ],
       ),
@@ -73,9 +153,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeView {
   }
 
   @override
-  void onError(String message) {
-
-  }
+  void onError(String message) {}
 
   @override
   void onGetCategorySuccess(List<String> categories) {

@@ -28,6 +28,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> implements Pr
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         iconTheme: IconThemeData(color: Colors.white),
@@ -39,6 +40,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> implements Pr
         },
         child: ListView(
           children: [
+            Container(margin: EdgeInsets.all(5),),
             CarouselSlider(
               options: CarouselOptions(height: 400.0),
               items:product.images!.map((i) {
@@ -48,7 +50,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> implements Pr
                         width: MediaQuery.of(context).size.width,
                         margin: EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
-                            color: Colors.amber
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                            color: Colors.indigo
                         ),
                         child: Image.network("${i}"
                         ,height: 400,fit: BoxFit.contain,),
@@ -131,6 +134,37 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> implements Pr
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        elevation: 10,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shop,
+              size: 30.0,
+            ),
+            label: 'Dashboard',
+          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.search,
+          //     size: 30.0,
+          //   ),
+          //   label: 'Search',
+          // ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.inbox,
+              size: 30.0,
+            ),
+            label: 'Settings',
+          ),
+        ],
       ),
     );
   }

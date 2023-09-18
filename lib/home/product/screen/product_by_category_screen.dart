@@ -34,7 +34,7 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen>
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         iconTheme: IconThemeData(color: Colors.white),
-        title: Text("${widget.categoryName.toLowerCase()}"),
+        title: Text("${widget.categoryName.toUpperCase()}",style: TextStyle(color: Colors.white),),
       ),
       body: Container(
         child: loading == true
@@ -58,7 +58,7 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen>
                         child: ListTile(
                           leading: Image.network(
                             "${product.thumbnail}",
-                            width: 80,
+                            width: 100,
                             height: 100,
                           ),
                           title: Text("${product.title}"),
